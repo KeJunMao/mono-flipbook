@@ -11,6 +11,19 @@ pnpm dev --host 127.0.0.1 --port 5173
 
 打开 http://127.0.0.1:5173 。
 
+## GitHub Pages 部署
+
+工作流位于 [.github/workflows/pages.yml](.github/workflows/pages.yml)，推送到 `main` 时自动部署，也支持手动触发。
+
+1. 在仓库的 **Settings → Pages → Build and deployment** 中，将 **Source** 设为 **GitHub Actions**。这是使用自定义部署工作流的启用步骤，见 [GitHub 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+2. 提交本次改动并推送到 `main`。
+3. 在 **Actions → Deploy GitHub Pages** 查看进度；也可点击 **Run workflow** 手动部署。
+4. 完成后，从工作流的 `github-pages` 环境链接打开网站。当前仓库的默认地址为 [https://kejunmao.github.io/mono-flipbook/](https://kejunmao.github.io/mono-flipbook/)。
+
+工作流使用 Node.js 24 和 `package.json` 固定的 pnpm 版本，按锁文件安装依赖、检查源码、生成离线阅读器、构建并发布 `dist/`。部署使用 GitHub 自动提供的令牌，无需配置个人 Token 或手动提交构建产物。
+
+构建路径读取 Pages 的 `base_path`，自动适配仓库子路径、用户主页和已配置的自定义域名；本地默认仍使用相对路径。Fork 后无需把原仓库名写进代码；在自己的仓库中启用 Pages 即可。如果更改部署分支，请同步修改工作流的 `on.push.branches`。
+
 ## 操作
 
 - 批量上传浏览器可解码的图片，按文件名自然排序。第一次上传替换示例，后续上传追加。

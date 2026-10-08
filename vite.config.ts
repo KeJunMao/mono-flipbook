@@ -3,6 +3,6 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "./",
+  base: process.env.GITHUB_PAGES_BASE_PATH || "./",
   plugins: [react()],
 });

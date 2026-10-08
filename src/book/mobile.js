@@ -7,7 +7,7 @@ const S = { createMagazinePerformance };
 const x = {
   MONO_MAGAZINE_FRAME: { left: -0.34, right: 1.22, bottom: -1.2, top: 1.2 },
 };
-const u = { monoMagazinePatternSource: "/assets/paper.webp" };
+const u = { monoMagazinePatternSource: "./assets/paper.webp" };
 export const mountMobile = function (e, t, a = 0, n = {}) {
   const folioShadow = { value: (n.shadow ?? 40) / 100 };
   let o = (0, S.createMagazinePerformance)(e, "mobile"),

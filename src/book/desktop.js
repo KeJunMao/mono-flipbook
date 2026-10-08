@@ -4,7 +4,7 @@ import * as i from "three";
 import * as l from "./loader.js";
 import { createMagazinePerformance } from "./performance.js";
 const s = { createMagazinePerformance };
-const o = { monoMagazinePatternSource: "/assets/paper.webp" };
+const o = { monoMagazinePatternSource: "./assets/paper.webp" };
 export const mountDesktop = function (e, t, a = {}) {
   let n = (0, s.createMagazinePerformance)(e, "desktop"),
     r = new AbortController(),
