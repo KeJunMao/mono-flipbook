@@ -9,8 +9,6 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "playwright test",
-    "test:visual": "node scripts/compare-reference.mjs",
-    "assets:download": "node scripts/download-assets.mjs",
     "predev": "node scripts/build-reader.mjs",
     "prebuild": "node scripts/build-reader.mjs"
   },
