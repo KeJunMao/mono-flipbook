@@ -1,0 +1,155 @@
+.folio-scene {
+  position: relative;
+  isolation: isolate;
+  background: var(--folio-bg, #f6f5f0);
+  color: var(--folio-ink, #343631);
+  overflow: hidden;
+}
+.folio-scene[data-background="gradient"] {
+  background: linear-gradient(135deg, var(--folio-bg), var(--folio-bg-end));
+}
+.folio-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.folio-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size: var(--folio-gx, 18px) var(--folio-gy, 18px);
+}
+.folio-pattern[data-pattern="grid"] {
+  background-image:
+    linear-gradient(to right, var(--folio-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--folio-grid) 1px, transparent 1px);
+}
+.folio-pattern[data-pattern="dots"] {
+  background-image: radial-gradient(
+    circle,
+    var(--folio-grid) 1px,
+    transparent 1.2px
+  );
+}
+.folio-pattern[data-pattern="lines"] {
+  background-image: linear-gradient(
+    to bottom,
+    var(--folio-grid) 1px,
+    transparent 1px
+  );
+}
+.folio-book {
+  position: absolute;
+  inset: 68px 24px 70px;
+  container-type: size;
+}
+.folio-book .book-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+.folio-book .book-frame.desktop {
+  width: min(
+    calc(100cqw * var(--folio-size)),
+    calc(100cqh * 1.44753 * var(--folio-size))
+  );
+  aspect-ratio: 1.44753;
+}
+.folio-book .book-frame.mobile {
+  height: min(
+    calc(100cqh * var(--folio-size)),
+    calc(100cqw / 0.65 * var(--folio-size))
+  );
+  aspect-ratio: 0.65;
+}
+.folio-book .book-host {
+  position: absolute;
+  touch-action: pan-y pinch-zoom;
+}
+.folio-book[data-layout="desktop"] .book-host {
+  width: min(
+    calc(100cqw * var(--folio-size)),
+    calc(100cqh * 1.44753 * var(--folio-size))
+  );
+  aspect-ratio: 1.44753;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+.folio-book[data-layout="desktop"] canvas {
+  position: absolute;
+  top: -27.975%;
+  left: -27.975%;
+  width: 155.95%;
+  height: 155.95%;
+  pointer-events: none;
+}
+.folio-book[data-layout="mobile"] .book-host {
+  inset: -68px -24px -70px;
+}
+.folio-book[data-layout="mobile"] canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.folio-book canvas {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.folio-book [data-magazine-state="ready"] canvas {
+  opacity: 1;
+}
+.folio-scene-title {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  margin: 0;
+  font:
+    400 18px/1.3 Georgia,
+    "Songti SC",
+    serif;
+  z-index: 2;
+  pointer-events: none;
+}
+.folio-scene-title small {
+  display: block;
+  margin-top: 7px;
+  font:
+    10px/1.4 "Courier New",
+    monospace;
+  letter-spacing: 1.5px;
+  opacity: 0.6;
+}
+.folio-state {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 12px;
+  font-size: 13px;
+  pointer-events: none;
+}
+.folio-state button {
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .folio-book canvas {
+    transition: none;
+  }
+}
+
+.folio-scene-title {
+  max-width: calc(100% - 160px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
